@@ -5,6 +5,7 @@ import * as CounterActions from '../actions/counter';
 import summary from '../summary.csv';
 import * as UiActions from '../actions/ui';
 
+// WEBSOCKET VERSION
 // import io from 'socket.io-client';
 // const socket = io('http://localhost:8081/summary');
 
@@ -33,7 +34,7 @@ class App extends React.Component {
     }),
     uiActions:React.PropTypes.shape({
       updateUi:React.PropTypes.func.isRequired,
-      loading:React.PropTypes.bool.isRequired,
+      loading:React.PropTypes.func.isRequired,
     }),
     ui: React.PropTypes.object,
   };
@@ -52,10 +53,12 @@ class App extends React.Component {
       });
       this.props.uiActions.updateUi({'loadDone':true});
     });
+    // WEBSOCKET VERSION: uncomment this and import socket lines at the top
     // let counter =0;
     // socket.on('msg', (data)=>{
     //   counter++;
     //   setTimeout(()=>{
+    //     this.props.uiActions.loading(true);
     //     this.props.counterActions.getLine(data.line);
     //   });
     //   console.log(counter);
